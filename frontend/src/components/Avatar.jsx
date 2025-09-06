@@ -1,4 +1,4 @@
-// src/components/Avatar.jsx
+
 export default function Avatar({ name = "?", size = 40 }) {
   const initials = (name || "?")
     .split(" ")
