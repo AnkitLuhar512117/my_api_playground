@@ -2,7 +2,7 @@ const User = require("../models/User");
 const Profile = require("../models/Profile");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = process.env.JWT_SECRET || "devsecret";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 exports.register = async (req, res, next) => {
   try {
@@ -29,10 +29,10 @@ exports.register = async (req, res, next) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    // create user
+    
     const user = await User.create({ email, password, name });
 
-    // build profile
+    
     const profileData = {
       user: user._id,
       name,
@@ -99,7 +99,7 @@ exports.login = async (req, res, next) => {
       user: {
         id: user._id,
         email: user.email,
-        name: user.name || profile?.name || null, // always return name
+        name: user.name || profile?.name || null, 
       },
       profile: profile || null,
     });
