@@ -22,11 +22,10 @@ app.get("/health", (req, res) =>
   res.json({ status: "ok", time: new Date().toISOString() })
 );
 
-// static uploads served
-// app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// mount routes
+
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api", apiRoutes);
