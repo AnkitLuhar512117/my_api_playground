@@ -1,4 +1,4 @@
-// src/middlewares/upload.middleware.js
+
 const path = require("path");
 const multer = require("multer");
 const fs = require("fs");
