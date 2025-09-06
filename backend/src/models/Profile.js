@@ -1,13 +1,13 @@
-// src/models/Profile.js
+
 const mongoose = require("mongoose");
 
 const projectSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
   links: [String],
-  techstack: [String], // <-- NEW
-  repoLink: String, // <-- NEW
-  deployLink: String, // <-- NEW
+  techstack: [String], 
+  repoLink: String, 
+  deployLink: String, 
 });
 
 const workSchema = new mongoose.Schema({
@@ -27,18 +27,18 @@ const profileSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   education: String,
-  degree: String, // <-- NEW
-  cgpa: String, // <-- NEW
-  startYear: String, // <-- NEW
-  endYear: String, // <-- NEW
+  degree: String, 
+  cgpa: String, 
+  startYear: String, 
+  endYear: String, 
   skills: [String],
   projects: [projectSchema],
   work: [workSchema],
-  resumeFile: String, // stored filename or URL path
+  resumeFile: String, 
   phone: String,
   github: String,
   linkedin: String,
-  codingPlatform: String, // <-- NEW
+  codingPlatform: String, 
 });
 
 module.exports = mongoose.model("Profile", profileSchema);
