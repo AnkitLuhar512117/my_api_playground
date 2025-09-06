@@ -1,6 +1,5 @@
 const Profile = require("../models/Profile");
 
-// List all projects (optionally filter by skill)
 exports.listProjects = async (req, res, next) => {
   try {
     const { skill, page = 1, limit = 20 } = req.query;
@@ -17,7 +16,7 @@ exports.listProjects = async (req, res, next) => {
       .limit(parseInt(limit))
       .lean();
 
-    // Flatten projects with owner info
+  
     const results = [];
     profiles.forEach((p) => {
       (p.projects || []).forEach((proj) => {
@@ -38,7 +37,7 @@ exports.listProjects = async (req, res, next) => {
   }
 };
 
-// Top skills aggregation
+
 exports.topSkills = async (req, res, next) => {
   try {
     const agg = await Profile.aggregate([
@@ -54,7 +53,6 @@ exports.topSkills = async (req, res, next) => {
   }
 };
 
-// Search projects/profiles by keyword
 exports.searchAll = async (req, res, next) => {
   try {
     const q = req.query.q || "";
@@ -80,7 +78,6 @@ exports.searchAll = async (req, res, next) => {
     const results = [];
     profiles.forEach((p) => {
       (p.projects || []).forEach((proj) => {
-        // Include project if it matches or if the profile matches
         if (
           regex.test(p.name) ||
           regex.test(p.education || "") ||
