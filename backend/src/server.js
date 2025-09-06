@@ -2,9 +2,9 @@ require("dotenv").config();
 const app = require("./app");
 const mongoose = require("mongoose");
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 const MONGO_URI =
-  process.env.MONGO_URI || "mongodb://localhost:27017/me_api_db";
+  process.env.MONGO_URI;
 async function start() {
   try {
     await mongoose.connect(MONGO_URI, {
