@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
@@ -8,7 +8,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  // console.log(user);
+  
 
   const handleLogout = async () => {
     await logout();
@@ -24,7 +24,7 @@ export default function Navbar() {
     <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          
           <Link
             to="/"
             className="text-xl font-bold text-indigo-600 hover:text-indigo-700"
@@ -32,7 +32,6 @@ export default function Navbar() {
             My-API Playground!
           </Link>
 
-          {/* Links */}
           <div className="flex items-center space-x-6">
             {!user ? (
               <>
@@ -58,7 +57,7 @@ export default function Navbar() {
                   Edit Profile
                 </Link>
 
-                {/* Avatar Dropdown */}
+              
                 <div className="relative">
                   <button
                     onClick={() => setMenuOpen(!menuOpen)}
