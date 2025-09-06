@@ -24,7 +24,9 @@ app.get("/health", (req, res) =>
 
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
-
+app.get('/', (req, res) => {
+  res.send('API is running successfully!');
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
