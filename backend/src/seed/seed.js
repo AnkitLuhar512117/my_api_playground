@@ -15,7 +15,6 @@ async function run() {
 
   const email = "ankitluhar123@gmail.com";
 
-  // ✅ plain password (schema will hash it)
   const user = await User.create({ email, password: "password123" });
 
   await Profile.create({
