@@ -175,7 +175,7 @@ graph TD;
 
 Backend (Render) → https://my-api-playground.onrender.com/
 
-Frontend (Vercel) → https://my-api-playground-ezn8.vercel.app/
+Frontend (Vercel) → https://my-api-playground-p1fk.vercel.app/
 
 
 📑 Resume & Author
