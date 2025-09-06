@@ -1,4 +1,4 @@
-// src/context/AuthContext.jsx
+
 import React, {
   createContext,
   useContext,
@@ -11,8 +11,8 @@ import { api } from "../services/api";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null); // { id, email, name? }
-  const [profile, setProfile] = useState(null); // profile document from backend
+  const [user, setUser] = useState(null); 
+  const [profile, setProfile] = useState(null); 
   const [loading, setLoading] = useState(true);
   const [justAuthed, setJustAuthed] = useState(false);
 
@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
     const u = raw ? JSON.parse(raw) : null;
     setUser(u);
     setLoading(false);
-    if (u) refreshProfile(); // hydrate profile
+    if (u) refreshProfile(); 
   }, []);
 
   const refreshProfile = async () => {
@@ -30,7 +30,6 @@ export function AuthProvider({ children }) {
       setProfile(p);
     } catch (err) {
       setProfile(null);
-      // Not throwing here; profile may not exist yet
     }
   };
 
@@ -38,7 +37,7 @@ export function AuthProvider({ children }) {
     const data = await api.post("/auth/login", { email, password });
     if (!data.token) throw new Error("No token returned from server");
     localStorage.setItem("token", data.token);
-    // server returns user and profile
+
     const userObj = data.user || { id: data.user?.id, email };
     localStorage.setItem("user", JSON.stringify(userObj));
     setUser(userObj);
@@ -48,7 +47,7 @@ export function AuthProvider({ children }) {
   };
 
   const register = async (formData) => {
-    // formData must be FormData (multipart) to support resume file
+  
     const data = await api.post("/auth/register", formData, true);
     if (!data.token) throw new Error("No token returned from server");
     localStorage.setItem("token", data.token);
@@ -58,17 +57,15 @@ export function AuthProvider({ children }) {
     };
     localStorage.setItem("user", JSON.stringify(userObj));
     setUser(userObj);
-    // registration created profile server-side; fetch it
     await refreshProfile();
     setJustAuthed(true);
   };
 
   const updateProfile = async (formData) => {
-    // accepts FormData or JSON object
     const isForm = formData instanceof FormData;
     const updated = await api.put("/profile/me", formData, isForm);
     setProfile(updated);
-    // sync user name/email if changed
+    
     if (updated?.name || updated?.email) {
       const merged = {
         ...user,
